@@ -2,11 +2,21 @@ import { Component } from 'angular2/core';
 
 @Component({
 	selector: 'my-app',
-	template: '<h1>{{ message }}</h1>'
+	template: `
+		<h1>{{ title }}</h1>
+		<p>{{ hero.name }}</p>
+	`
 })
 
 export class AppComponent {
-	constructor() {
-		this.message = 'My first angular2 app';
+	public title = 'Tour of Heros';
+	public hero: Hero = {
+		id: 1,
+		name: 'Armno'
 	}
+}
+
+interface Hero {
+	id: number;
+	name: string;
 }
