@@ -33,7 +33,7 @@ then update `config.js` file with [Usage instruction](https://github.com/frankwa
 
 ```html
 ...
-  <my-app>Loading...</my-app>
+	<my-app>Loading...</my-app>
 
 	<script src="jspm_packages/system.js"></script>
 	<script src="config.js"></script>
