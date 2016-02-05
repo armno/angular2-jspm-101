@@ -48,6 +48,14 @@ then update `config.js` file with [Usage instruction](https://github.com/frankwa
 - `config.js` - path to generated config file from `$ jspm init` command
 - `System.import()` - importing root component, and have fun.
 
+### 6. import reflect-metadata in root component
+
+```js
+// app/main.ts
+import 'reflect-metadata';
+...
+```
+
 ## random notes taken
 
 - [SystemJS](https://github.com/systemjs/systemjs) is a dynamic module loader. supports ES6 modules, ADM, and CommonJS modules. works with transpilers.
