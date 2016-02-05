@@ -1,6 +1,6 @@
 # angular2-jspm-101
 
-WIP: Learning to setup Angular2 project with jspm and TypeScript.
+Learning to setup Angular2 project with [jspm](http://jspm.io/) and TypeScript.
 
 ### 1. Install `jspm` both globally and locally
 
@@ -30,3 +30,27 @@ $ jspm install ts
 then update `config.js` file with [Usage instruction](https://github.com/frankwallis/plugin-typescript#usage).
 
 ### 5. Create `index.html`
+
+```html
+...
+  <my-app>Loading...</my-app>
+
+	<script src="jspm_packages/system.js"></script>
+	<script src="config.js"></script>
+	<script>
+		System.import('app/main');
+	</script>
+...
+```
+
+- `<my-app></my-app>` - App's root component
+- `system.js` - path to `systemjs` inside of `jspm_packages` directory
+- `config.js` - path to generated config file from `$ jspm init` command
+- `System.import()` - importing root component, and have fun.
+
+## random notes taken
+
+- [SystemJS](https://github.com/systemjs/systemjs) is a dynamic module loader. supports ES6 modules, ADM, and CommonJS modules. works with transpilers.
+- [jspm](http://jspm.io/) is a package manager built on top of SystemJS. helpful to bring in modules installed with jspm to use with SystemJS.
+- [SystemJS TypeScript Loader](https://github.com/frankwallis/plugin-typescript) is a plugin for SystemJS which allows us to import `.ts` file without having to transpile them to `.js` first.
+- i still don't know how SystemJS play with transpilers. i think it will load the standalone version of the transpiler and transpile the modules. yet it doesn't do anything with installtion or setting up those transpilers.
