@@ -63,7 +63,7 @@ i'll use karma and jasmine.
 ### 1. install dependencies
 
 ```sh
-$ npm install karma jasmine-core karma-jasmine karma-cli karma-chrome-launcher karma-jspm
+$ npm install --save-dev karma jasmine-core karma-jasmine karma-cli karma-chrome-launcher karma-jspm
 ```
 
 ### 2. init karma
@@ -96,24 +96,46 @@ module.exports = function(config) {
 }
 ```
 
+the rest can be default configurations.
+
 ### 3. update `config.js` jspm config file
 
-karma does some weird thing with appending `/base` path into the url or rresources. i found myself need to update `config.js` to make jspm plays well with karma.
+karma does some weird thing with appending `/base` path into the url or rresources.
+i found myself need to update `config.js` to make systemjs plays well with karma: use `base` for `baseURL` if systemjs is used by karma.
+
+another issue i found is that karma does not load TypeScript configurations from `tsconfig.json` file. so I have to move all configs for TypeScript to `typescriptOptions` in config.js file instead.
 
 ```js
 // config.js
 System.config({
--  baseURL: "/",
-+  baseURL: (typeof __karma__ !== "undefined") ? "base" : "/",
-   ...
-	 typescriptOptions: {
-		 "tsconfig": false
-	 }
-	 ...
+  baseURL: (typeof __karma__ !== "undefined") ? "base" : "/",
+  ...
+	typescriptOptions: {
+		"tsconfig": false,
+		"module": "system",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "target": "es5"
+	}
+	...
 });
 ```
 
-the rest can be default configurations.
+### 4. "hello world" test
+
+create `app/main.spec.ts` with a dummy test
+
+```js
+// app.main.spec.ts
+describe('Main test', () => {
+	it('should be true', () => {
+		expect(true).toEqual(true);
+	});
+});
+```
+
+and run the test with `$ karma start`.
 
 ## random notes taken
 
