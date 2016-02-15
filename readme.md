@@ -1,6 +1,6 @@
 # angular2-jspm-101
 
-Learning to setup Angular2 project with [jspm](http://jspm.io/) and TypeScript.
+Learning to setup Angular2 project with [jspm](http://jspm.io/) and TypeScript, and testing with Karma.
 
 ### 1. Install `jspm` both globally and locally
 
@@ -55,6 +55,65 @@ then update `config.js` file with [Usage instruction](https://github.com/frankwa
 import 'reflect-metadata';
 ...
 ```
+
+## Setting Unit Tests
+
+i'll use karma and jasmine.
+
+### 1. install dependencies
+
+```sh
+$ npm install karma jasmine-core karma-jasmine karma-cli karma-chrome-launcher karma-jspm
+```
+
+### 2. init karma
+
+```sh
+$ karma init
+```
+
+karma creates `karma.conf.js` file. then we'll need to manually update the configurations to make it work with jspm.
+
+```js
+// karma.conf.js
+module.exports = function(config) {
+	...
+
+	frameworks: ['jspm', 'jasmine'],
+
+	jspm: {
+		loadFiles: ['app/**/*.spec.ts'],      // spec files
+		serveFiles: ['app/**/*!(*.spec).ts']  // source files
+	},
+
+	plugins: [
+		'karma-jasmine',
+		'karma-jspm',
+		'karma-chrome-launcher'
+	],
+
+	...
+}
+```
+
+### 3. update `config.js` jspm config file
+
+karma does some weird thing with appending `/base` path into the url or rresources. i found myself need to update `config.js` to make jspm plays well with karma.
+
+```js
+// config.js
+System.config({
+-  baseURL: "/",
++  baseURL: (typeof __karma__ !== "undefined") ? "base" : "/",
+   ...
+	 typescriptOptions: {
+		 "tsconfig": false
+	 }
+	 ...
+});
+```
+
+the rest can be default configurations.
 
 ## random notes taken
 
