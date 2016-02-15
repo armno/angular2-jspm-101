@@ -113,10 +113,10 @@ System.config({
 	typescriptOptions: {
 		"tsconfig": false,
 		"module": "system",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "target": "es5"
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
+		"target": "es5"
 	}
 	...
 });
@@ -140,7 +140,8 @@ and run the test with `$ karma start`.
 ## random notes taken
 
 - [SystemJS](https://github.com/systemjs/systemjs) is a dynamic module loader. supports ES6 modules, ADM, and CommonJS modules. works with transpilers.
-- [jspm](http://jspm.io/) is a package manager built on top of SystemJS. helpful to bring in modules installed with jspm to use with SystemJS.
+- [jspm](http://jspm.io/) is a package manager built on top of SystemJS. Helpful to bring in modules installed with jspm to use with SystemJS.
 - [SystemJS TypeScript Loader](https://github.com/frankwallis/plugin-typescript) is a plugin for SystemJS which allows us to import `.ts` file without having to transpile them to `.js` first.
-- i still don't know how SystemJS play with transpilers. i think it will load the standalone version of the transpiler and transpile the modules. yet it doesn't do anything with installtion or setting up those transpilers.
-- in `config.js`, `"transpiler"` is set to `false` so SystemJS will not try to find `typescript.js` in root path: the plugin will take care of it.
+- I still don't know how SystemJS play with transpilers. I think it will load the standalone version of the transpiler and transpile the modules. yet it doesn't do anything with installtion or setting up those transpilers.
+- In `config.js`, `"transpiler"` is set to `false` so SystemJS will not try to find `typescript.js` in root path: the plugin will take care of it.
+- sometimes weird problems can be solved by upgrading installed dependencies' version.
