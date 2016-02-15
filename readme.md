@@ -145,3 +145,4 @@ and run the test with `$ karma start`.
 - I still don't know how SystemJS play with transpilers. I think it will load the standalone version of the transpiler and transpile the modules. yet it doesn't do anything with installtion or setting up those transpilers.
 - In `config.js`, `"transpiler"` is set to `false` so SystemJS will not try to find `typescript.js` in root path: the plugin will take care of it.
 - sometimes weird problems can be solved by upgrading installed dependencies' version.
+- `angular2/testing` exports jasmine's globals like `describe`, `it`, `expect`. These functions can be used without importing from `angular2/testing` though. But if you want to use from angular2, make sure you import `reflect-metadata` into te tests too.
